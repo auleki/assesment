@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap')
+$c4: #27292D
+$c5: #FFFFFF
+$c1: #4F63FF
+$c2: #35BB63
+$c3: #FF005C
+$c6: #ffd900
+$c7: #9BA1B5
+$c8: #F2F2F2
+$c9: #182655
+$f1: Quicksand
+
+* 
+  padding: 0
+  margin: 0
+  box-sizing: border-box
+
+body 
+  height: 100vh
+  width: 100%
+  background-color: $c6 
+  font-family: $f1
+  display: flex
+  align-items: center
+  justify-content: center
+
+.card   
+  display: flex
+  justify-content: space-around
+  position: relative  
+
+  .controls 
+    display: flex
+    justify-content: space-around
+
+  .percentage 
+    font-size: 2rem
+    color: $c1
+    font-weight: 1000
+
+  .info 
+    display: flex
+    align-items: flex-end
+    margin: .5rem 0
+    
+    span 
+      margin: 0 .5rem
+  .change 
+    color: $c3
+    font-weight: 600
+
+  .intervals
+    display: grid
+    grid-template-columns: 1fr 1fr 1fr
+    position: absolute
+    bottom: 0
+    width: 100%
+    
+    span
+      padding: .5rem 0
+      text-align: center
+      
+
+
+
+
+  
+
+
+.full
+    padding: 2rem 1rem
+    height: 12rem
+    width: 30rem  
+    &.light
+      background-color: $c5
+    .intervals 
+      background-color: $c5
+      cursor: pointer
+      color: $c9        
+        
+      span 
+        border: 1px solid $c7
+        &.now 
+          background-color: $c8
+    &.dark 
+      background-color: $c4
+
