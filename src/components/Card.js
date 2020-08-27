@@ -1,21 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Moon from '../moon.svg';
+import Mode from '../mode.svg';
+import ModeDark from '../mode-dark.svg';
+import Sun from '../sun.svg';
+import Info from '../info.svg';
 
 const Card = () => {
   const [isDark, setIsDark] = useState(false);
+  const [mode, setMode] = useState(['full', 'compact', 'minimal']);
+  const [classState, setClassState] = useState("card light minimal")
 
+  const classArray = ['card', 'dark', 'full']
+  
+  let classString = classArray.join(" ")
 
+  const shuffleMode = () => {
+  }
 
   const switchMode = () => {
-    
+    classArray.pop()
+    classArray.push(mode[1])
+    classString = classArray.join(" ")
+    console.log(classString);
+    setClassState(classString)
   }
 
   const darkToggle = () => {
     setIsDark(!isDark)
   }
-  const pickClass = isDark ? 'card dark full' : 'card light full';
+
+  // useEffect(() => {
+    
+  //   console.log(classString);
+  // }, [])
+
+  
+  
+  // const pickClass = isDark ? 'card dark full' : 'card light full';
+  
   
   return (      
-        <div className={pickClass}>
+        <div className={classState}>
           <div className="stats">
             <h3 className="title">POS FAILURE RATE</h3>
             {/* FIX STRUCTURE TO CONTAIN TITLE IN A BOX */}
@@ -27,19 +52,19 @@ const Card = () => {
           </div>
           <div className="controls">
             <div className="actions">
+
               <div className="mode">
-                <button
-                  onClick={switchMode}
-                  >
-                  MODE
-                </button>
+                  <img 
+                    src={Moon} 
+                    onClick={switchMode}
+                    alt="moon"/>
               </div>
+
               <div className="switch">
-              <button
-                  onClick={darkToggle}
-                  >
-                  SWITCH
-                </button>
+                  <img 
+                    src={Moon} 
+                    onClick={darkToggle}
+                    alt="moon switch"/>
               </div>
             </div>
             
@@ -52,6 +77,15 @@ const Card = () => {
 
           <div className="range_minimal">
             <div className="range_width"></div>
+          </div>
+          {/* YET TO BE STYLED */}
+          
+          <div className="info">
+            <img src={Info} alt="info icon"/>
+            <p className="info">
+              Sourced by NIBBS
+            </p>
+
           </div>
 
           <div className="intervals">
