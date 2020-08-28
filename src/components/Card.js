@@ -6,41 +6,41 @@ import Sun from '../sun.svg';
 import Info from '../info.svg';
 
 const Card = () => {
-  const [isDark, setIsDark] = useState(false);
-  const [mode, setMode] = useState(['full', 'compact', 'minimal']);
-  const [classState, setClassState] = useState("card light minimal")
 
-  const classArray = ['card', 'dark', 'full']
+  const [isDark, setIsDark] = useState(false)
+  const [mode, setMode] = useState("")
+  // const [classState, setClassState] = useState("card light minimal")
+  const allModes = ["full", "minimal", "compact"]
   
-  let classString = classArray.join(" ")
 
-  const shuffleMode = () => {
-  }
+  // const classArray = ['card', 'dark', 'full']
+
+  const switchClass = isDark ? "dark": "light"
+
+  useEffect(() => {
+    const modeIndex = Math.floor(Math.random() * allModes.length)
+    console.log(modeIndex);
+    let currentMode = allModes[modeIndex]
+    setMode(currentMode)
+    
+  }, [])
 
   const switchMode = () => {
-    classArray.pop()
-    classArray.push(mode[1])
-    classString = classArray.join(" ")
-    console.log(classString);
-    setClassState(classString)
+    // classArray.pop()
+    // classArray.push(mode[1])
+    // classString = classArray.join(" ")
+    // console.log(classString);
+    // setClassState(classString)
+    
   }
 
   const darkToggle = () => {
     setIsDark(!isDark)
   }
-
-  // useEffect(() => {
-    
-  //   console.log(classString);
-  // }, [])
-
-  
-  
-  // const pickClass = isDark ? 'card dark full' : 'card light full';
-  
   
   return (      
-        <div className={classState}>
+        <div className={`card ${switchClass} ${mode}`}>
+        {/* // <div className={`card`}> */}
           <div className="stats">
             <h3 className="title">POS FAILURE RATE</h3>
             {/* FIX STRUCTURE TO CONTAIN TITLE IN A BOX */}
@@ -54,17 +54,25 @@ const Card = () => {
             <div className="actions">
 
               <div className="mode">
-                  <img 
+                  {/* <img 
                     src={Moon} 
                     onClick={switchMode}
-                    alt="moon"/>
+                    alt="moon"/> */}
+                    <button
+                      onClick={switchMode}>
+                      MODE
+                    </button>
               </div>
 
               <div className="switch">
-                  <img 
+                  {/* <img 
                     src={Moon} 
                     onClick={darkToggle}
-                    alt="moon switch"/>
+                    alt="moon switch"/> */}
+                    <button
+                      onClick={darkToggle}>
+                      SWITCH
+                    </button>
               </div>
             </div>
             
@@ -72,7 +80,7 @@ const Card = () => {
               <input type="range" min="1" max="100" value="50"/>
             </div>
             
-            <p className="source">Source <span>NIBBS</span></p>
+            {/* <p className="source">Source <span>NIBBS</span></p> */}
           </div>
 
           <div className="range_minimal">
