@@ -8,6 +8,7 @@ $c6: #ffd900
 $c7: #9BA1B5
 $c8: #F2F2F2
 $c9: #182655
+$c10: #383B40
 $f1: Quicksand
 
 * 
@@ -28,10 +29,20 @@ body
   display: flex
   justify-content: space-around
   position: relative  
+  border-radius: .3rem
 
   .controls 
     display: flex
-    justify-content: space-around
+    flex-direction: column
+    align-items: flex-end
+    width: 50%
+    .actions 
+      display: flex
+      div 
+        margin: 0 .5rem 1rem .5rem 
+    .slider 
+      input[type="range"]
+          
 
   .percentage 
     font-size: 2rem
@@ -59,29 +70,71 @@ body
     span
       padding: .5rem 0
       text-align: center
-      
-
-
-
-
   
 
 
-.full
+.full, .compact, .minimal
     padding: 2rem 1rem
     height: 12rem
     width: 30rem  
-    &.light
-      background-color: $c5
-    .intervals 
-      background-color: $c5
-      cursor: pointer
-      color: $c9        
-        
-      span 
-        border: 1px solid $c7
-        &.now 
-          background-color: $c8
-    &.dark 
-      background-color: $c4
 
+.full 
+  .intervals 
+    span 
+      border: 1px solid $c10
+      
+  
+   
+.light
+  background-color: $c5
+  .intervals 
+    background-color: $c5
+    cursor: pointer
+    color: $c9       
+    span 
+      border: 1px solid $c7
+      border-bottom: none
+      &.now 
+        background-color: $c8
+  .range_minimal
+    background-color: $c8
+    .range_width
+      background-color: $c3
+
+  .switch 
+    
+
+.dark 
+  background-color: $c4
+  .title 
+    color: $c8
+  .intervals
+    background-color: $c4
+    color: $c8
+  span.now
+    background-color: $c10
+  .range_minimal 
+    background-color: $c10
+    .range_width
+      background-color: $c3
+    
+
+.compact 
+  .intervals 
+    display: none
+
+.minimal
+  .intervals
+    display: none
+  .range_minimal 
+    position: absolute
+    padding: 0rem
+    bottom: .5rem
+    border-radius: 100rem
+    width: 90%
+    .range_width
+      width: 80%
+      border-radius: 100rem
+      height: .5rem
+      // background-color: $c3
+  
