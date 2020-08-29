@@ -1,37 +1,51 @@
 import React, { useState, useEffect } from 'react';
-import Moon from '../moon.svg';
-import Mode from '../mode.svg';
-import ModeDark from '../mode-dark.svg';
-import Sun from '../sun.svg';
+// import Moon from '../moon.svg';
+// import Mode from '../mode.svg';
+// import ModeDark from '../mode-dark.svg';
+// import Sun from '../sun.svg';
 import Info from '../info.svg';
 
 const Card = () => {
 
+ 
+  // let defaultIndex = 0
+  // let currentMode = allModes[defaultIndex]
+
   const [isDark, setIsDark] = useState(false)
-  const [mode, setMode] = useState("")
+  const [mode, setMode] = useState(0)
+  // const [modeClass, setModeClass] = useState()
   // const [classState, setClassState] = useState("card light minimal")
-  const allModes = ["full", "minimal", "compact"]
   
 
+  const allModes = ["full", "minimal", "compact"]
+  const currentMode = allModes[mode]
   // const classArray = ['card', 'dark', 'full']
 
   const switchClass = isDark ? "dark": "light"
 
   useEffect(() => {
-    const modeIndex = Math.floor(Math.random() * allModes.length)
-    console.log(modeIndex);
-    let currentMode = allModes[modeIndex]
-    setMode(currentMode)
+    if(mode === 3) setMode(0);
+    const currentMode = allModes[mode]    
+    console.log(currentMode);
     
-  }, [])
+    
+
+  }, [currentMode])
+  // do shallow copy to increment state
+  
+
 
   const switchMode = () => {
-    // classArray.pop()
-    // classArray.push(mode[1])
-    // classString = classArray.join(" ")
-    // console.log(classString);
-    // setClassState(classString)
-    
+    // if(mode === 3) {
+    //   setMode(-1)
+    // }
+    setMode(mode + 1)
+    // console.log(mode);
+    // console.log(currentMode);
+  }
+
+  const sliderChange = () => {
+
   }
 
   const darkToggle = () => {
@@ -39,7 +53,7 @@ const Card = () => {
   }
   
   return (      
-        <div className={`card ${switchClass} ${mode}`}>
+        <div className={`card ${switchClass} ${currentMode}`}>
         {/* // <div className={`card`}> */}
           <div className="stats">
             <h3 className="title">POS FAILURE RATE</h3>
@@ -77,7 +91,12 @@ const Card = () => {
             </div>
             
             <div className="slider">
-              <input type="range" min="1" max="100" value="50"/>
+              <input 
+                type="range" 
+                min="1" 
+                max="100" 
+                onChange={sliderChange}
+                value="50"/>
             </div>
             
             {/* <p className="source">Source <span>NIBBS</span></p> */}
