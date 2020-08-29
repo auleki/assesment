@@ -4,9 +4,12 @@ import './App.sass'
 
 
 const App = () => {
+  const allModes = ["full", "minimal", "compact", "full"];
+  const darkMode = false
+
     return (
       <div className="container">
-        <Card />
+        <Card cardState={allModes} switchState={darkMode}/>
       </div>
     );
   }

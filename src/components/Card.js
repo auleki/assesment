@@ -5,47 +5,28 @@ import React, { useState, useEffect } from 'react';
 // import Sun from '../sun.svg';
 import Info from '../info.svg';
 
-const Card = () => {
-
- 
-  // let defaultIndex = 0
-  // let currentMode = allModes[defaultIndex]
-
-  const [isDark, setIsDark] = useState(false)
-  const [mode, setMode] = useState(0)
-  // const [modeClass, setModeClass] = useState()
-  // const [classState, setClassState] = useState("card light minimal")
+const Card = ({cardState, switchState}) => {  
+  // const allModes = ["full", "minimal", "compact", "full"]
+  // const currentMode = allModes[0]
   
+  const [isDark, setIsDark] = useState(switchState)
+  const [mode, setMode] = useState(0)
+  const [modeClass, setModeClass] = useState(cardState)
+  const currentMode = modeClass[mode]
 
-  const allModes = ["full", "minimal", "compact"]
-  const currentMode = allModes[mode]
-  // const classArray = ['card', 'dark', 'full']
 
   const switchClass = isDark ? "dark": "light"
 
   useEffect(() => {
-    if(mode === 3) setMode(0);
-    const currentMode = allModes[mode]    
-    console.log(currentMode);
-    
-    
-
-  }, [currentMode])
-  // do shallow copy to increment state
+    if(mode === 3) setMode(0)
+  }, [mode])
   
-
-
   const switchMode = () => {
-    // if(mode === 3) {
-    //   setMode(-1)
-    // }
     setMode(mode + 1)
-    // console.log(mode);
-    // console.log(currentMode);
   }
 
   const sliderChange = () => {
-
+    
   }
 
   const darkToggle = () => {
