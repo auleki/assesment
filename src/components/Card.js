@@ -4,33 +4,30 @@ import Mode from '../mode.svg';
 import ModeDark from '../mode-dark.svg';
 import Sun from '../sun.svg';
 import Info from '../info.svg';
+import IconButton from './IconButton';
 
-const Card = () => {
+const Card = ({ cardState, switchState  }) => {  
+  const [isDark, setIsDark] = useState(switchState)
+  const [mode, setMode] = useState(0)
+  // eslint-disable-next-line
+  const [modeClass, setModeClass] = useState(cardState)
+  const currentMode = modeClass[mode]
 
-  const [isDark, setIsDark] = useState(false)
-  const [mode, setMode] = useState("")
-  // const [classState, setClassState] = useState("card light minimal")
-  const allModes = ["full", "minimal", "compact"]
-  
 
-  // const classArray = ['card', 'dark', 'full']
-
+  //ACTION VARIABLES 
   const switchClass = isDark ? "dark": "light"
+  const modeIcon = isDark ? ModeDark : Mode
+  const switchIcon = isDark ? Sun : Moon
 
   useEffect(() => {
-    const modeIndex = Math.floor(Math.random() * allModes.length)
-    console.log(modeIndex);
-    let currentMode = allModes[modeIndex]
-    setMode(currentMode)
-    
-  }, [])
-
+    if(mode === 3) setMode(0)
+  }, [mode])
+  
   const switchMode = () => {
-    // classArray.pop()
-    // classArray.push(mode[1])
-    // classString = classArray.join(" ")
-    // console.log(classString);
-    // setClassState(classString)
+    setMode(mode + 1)
+  }
+
+  const sliderChange = () => {
     
   }
 
@@ -39,63 +36,66 @@ const Card = () => {
   }
   
   return (      
-        <div className={`card ${switchClass} ${mode}`}>
-        {/* // <div className={`card`}> */}
+        <div className={`card ${switchClass} ${currentMode}`}>
+
+        <div className="card_content">
           <div className="stats">
-            <h3 className="title">POS FAILURE RATE</h3>
-            {/* FIX STRUCTURE TO CONTAIN TITLE IN A BOX */}
-            <div className="info">
-              <p className="percentage">60%</p>
-              <span className="change"><ion-icon name="caret-up-outline"></ion-icon> 8%</span>
-            </div>
+              <h3 className="title">POS FAILURE RATE</h3>
 
-          </div>
-          <div className="controls">
-            <div className="actions">
-
-              <div className="mode">
-                  {/* <img 
-                    src={Moon} 
-                    onClick={switchMode}
-                    alt="moon"/> */}
-                    <button
-                      onClick={switchMode}>
-                      MODE
-                    </button>
+              <div className="info">
+                <p className="percentage">60%</p>
+                <span className="change"><ion-icon name="caret-up-outline"></ion-icon> 8%</span>
               </div>
 
-              <div className="switch">
-                  {/* <img 
-                    src={Moon} 
-                    onClick={darkToggle}
-                    alt="moon switch"/> */}
-                    <button
-                      onClick={darkToggle}>
-                      SWITCH
-                    </button>
+            </div>
+
+            <div className="controls">
+              <div className="actions">
+                <IconButton
+                  iconUrl={modeIcon}
+                  iconClass="mode"
+                  onClick={switchMode}/>
+
+                <IconButton 
+                  iconUrl={switchIcon}
+                  iconClass="switch"
+                  onClick={darkToggle}/>
               </div>
-            </div>
-            
-            <div className="slider">
-              <input type="range" min="1" max="100" value="50"/>
-            </div>
-            
-            {/* <p className="source">Source <span>NIBBS</span></p> */}
-          </div>
+              
+              <div className="slider">
+                <input 
+                  type="range" 
+                  min="1" 
+                  max="100" 
+                  onChange={sliderChange}
+                  value="50"/>                  
+               </div>
+              
+              <div className="source">
+
+                <img src={Info} alt="info icon"/>
+                <p>
+                  Sourced by <a 
+                              href="https://nibss-plc.com.ng/"
+                              target="_blank"
+                              rel="noreferrer noopener"
+                                >
+                                NIBBS
+                              </a>
+                </p>
+
+              </div>
+
+            </div>            
+        </div>
+          
 
           <div className="range_minimal">
             <div className="range_width"></div>
           </div>
           {/* YET TO BE STYLED */}
           
-          <div className="info">
-            <img src={Info} alt="info icon"/>
-            <p className="info">
-              Sourced by NIBBS
-            </p>
-
-          </div>
-
+          
           <div className="intervals">
             <span className="now">Daily</span>
             <span>Monthly</span>
