@@ -4,15 +4,20 @@ import Mode from '../mode.svg';
 import ModeDark from '../mode-dark.svg';
 import Sun from '../sun.svg';
 import Info from '../info.svg';
+import IconButton from './IconButton';
 
 const Card = ({ cardState, switchState  }) => {  
   const [isDark, setIsDark] = useState(switchState)
   const [mode, setMode] = useState(0)
+  // eslint-disable-next-line
   const [modeClass, setModeClass] = useState(cardState)
   const currentMode = modeClass[mode]
 
 
+  //ACTION VARIABLES 
   const switchClass = isDark ? "dark": "light"
+  const modeIcon = isDark ? ModeDark : Mode
+  const switchIcon = isDark ? Sun : Moon
 
   useEffect(() => {
     if(mode === 3) setMode(0)
@@ -32,12 +37,11 @@ const Card = ({ cardState, switchState  }) => {
   
   return (      
         <div className={`card ${switchClass} ${currentMode}`}>
-        {/* // <div className={`card`}> */}
 
         <div className="card_content">
           <div className="stats">
               <h3 className="title">POS FAILURE RATE</h3>
-              {/* FIX STRUCTURE TO CONTAIN TITLE IN A BOX */}
+
               <div className="info">
                 <p className="percentage">60%</p>
                 <span className="change"><ion-icon name="caret-up-outline"></ion-icon> 8%</span>
@@ -47,22 +51,15 @@ const Card = ({ cardState, switchState  }) => {
 
             <div className="controls">
               <div className="actions">
+                <IconButton
+                  iconUrl={modeIcon}
+                  iconClass="mode"
+                  onClick={switchMode}/>
 
-                <div className="mode">                   
-                      <img 
-                        src={isDark ? ModeDark : Mode}
-                        onClick={switchMode}
-                        alt="" 
-                        srcset=""/>
-                </div>
-
-                <div className="switch">
-                  <img 
-                    src={isDark ? Sun : Moon} 
-                    alt="" 
-                    onClick={darkToggle}
-                    srcset=""/>                     
-                </div>
+                <IconButton 
+                  iconUrl={switchIcon}
+                  iconClass="switch"
+                  onClick={darkToggle}/>
               </div>
               
               <div className="slider">
@@ -71,11 +68,9 @@ const Card = ({ cardState, switchState  }) => {
                   min="1" 
                   max="100" 
                   onChange={sliderChange}
-                  value="50"/>
-                  
+                  value="50"/>                  
                </div>
               
-              {/* <p className="source">Source <span>NIBBS</span></p> */}
               <div className="source">
 
                 <img src={Info} alt="info icon"/>
