@@ -19,23 +19,32 @@ $f1: Quicksand
 body 
   height: 100vh
   width: 100%
-  background-color: $c6 
+  background-color: #111
   font-family: $f1
   display: flex
   align-items: center
   justify-content: center
 
+.container 
+  display: flex
+  justify-content: center  
+
+.card_content
+  display: grid
+  grid-template-columns: 2fr 2fr
+
 .card   
   display: flex
   justify-content: space-around
   position: relative  
-  border-radius: .3rem
+  border-radius: .3rem 
 
   .controls 
     display: flex
     flex-direction: column
     align-items: flex-end
-    width: 50%
+    width: 100%
+    // background-color: #e0f
     .actions 
       display: flex
       div 
@@ -56,10 +65,30 @@ body
     
     span 
       margin: 0 .5rem
+
   .change 
     color: $c3
     font-weight: 600
 
+  .source 
+    display: flex
+    justify-content: flex-end
+    align-items: center
+    height: 100%
+    width: 100%
+    p 
+      font-size: .6rem
+      letter-spacing: .5px
+      margin-left: .5rem
+      a
+        font-weight: 700
+        text-decoration: none 
+        color: $c10
+        transition: color 250ms ease-in-out
+        &:hover 
+          color: $c1
+
+  
   .intervals
     display: grid
     grid-template-columns: 1fr 1fr 1fr
@@ -70,13 +99,22 @@ body
     span
       padding: .5rem 0
       text-align: center
-  
 
 
-.full, .compact, .minimal
+.full
     padding: 2rem 1rem
     height: 12rem
-    width: 30rem  
+    width: 100%  
+
+.compact
+  padding: 2rem 1rem
+  height: 9rem 
+  width: 100%
+
+.minimal, 
+  padding: 2rem 1rem
+  height: 10rem 
+  width: 100%
 
 .full 
   .intervals 
@@ -111,6 +149,9 @@ body
   .intervals
     background-color: $c4
     color: $c8
+  .source
+    p
+      color: $c5
   span.now
     background-color: $c10
   .range_minimal 
@@ -126,6 +167,9 @@ body
 .minimal
   .intervals
     display: none
+  .slider 
+    display: none
+
   .range_minimal 
     position: absolute
     padding: 0rem
@@ -136,5 +180,4 @@ body
       width: 80%
       border-radius: 100rem
       height: .5rem
-      // background-color: $c3
   
