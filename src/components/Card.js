@@ -5,6 +5,8 @@ import ModeDark from '../mode-dark.svg';
 import Sun from '../sun.svg';
 import Info from '../info.svg';
 import IconButton from './IconButton';
+import Stats from './Stats';
+
 
 const Card = ({ cardState, switchState  }) => {  
   const [isDark, setIsDark] = useState(switchState)
@@ -34,22 +36,24 @@ const Card = ({ cardState, switchState  }) => {
   const darkToggle = () => {
     setIsDark(!isDark)
   }
+
+
+
+  const statTitle = 'POS FAILURE RATE';
+  const statRate = "60%";
+  const changeRate = "8%"
+  
   
   return (      
         <div className={`card ${switchClass} ${currentMode}`}>
 
         <div className="card_content">
-          <div className="stats">
-              <h3 className="title">
-                POS FAILURE RATE
-              </h3>
 
-              <div className="info">
-                <p className="percentage">60%</p>
-                <span className="change"><ion-icon name="caret-up-outline"></ion-icon> 8%</span>
-              </div>
-
-            </div>
+          <Stats 
+            title={statTitle}
+            rate={statRate}
+            change={changeRate}/>
+          
 
             <div className="controls">
               <div className="actions">
