@@ -6,6 +6,9 @@ import Sun from '../sun.svg';
 import Info from '../info.svg';
 import IconButton from './IconButton';
 import Stats from './Stats';
+import Slider from './Slider';
+import Source from './Source';
+
 
 
 const Card = ({ cardState, switchState  }) => {  
@@ -20,6 +23,14 @@ const Card = ({ cardState, switchState  }) => {
   const switchClass = isDark ? "dark": "light"
   const modeIcon = isDark ? ModeDark : Mode
   const switchIcon = isDark ? Sun : Moon
+
+  // STATE VARIABLES
+  const statTitle = 'POS FAILURE RATE';
+  const statRate = "60%";
+  const changeRate = "8%"
+  const url = "https://nibss-plc.com.ng/"
+  const sourceText = "NIBBS"
+  
 
   useEffect(() => {
     if(mode === 3) setMode(0)
@@ -39,10 +50,7 @@ const Card = ({ cardState, switchState  }) => {
 
 
 
-  const statTitle = 'POS FAILURE RATE';
-  const statRate = "60%";
-  const changeRate = "8%"
-  
+
   
   return (      
         <div className={`card ${switchClass} ${currentMode}`}>
@@ -67,31 +75,14 @@ const Card = ({ cardState, switchState  }) => {
                   iconClass="switch"
                   onClick={darkToggle}/>
               </div>
+
+              <Slider sliderChange={sliderChange} />         
               
-              <div className="slider">
-                <input 
-                  type="range" 
-                  min="1" 
-                  max="100" 
-                  onChange={sliderChange}
-                  value=""/>                  
-               </div>
-              
-              <div className="source">
-
-                <img src={Info} alt="info icon"/>
-                <p>
-                  Sourced by <a 
-                              href="https://nibss-plc.com.ng/"
-                              target="_blank"
-                              rel="noreferrer noopener"
-                                >
-                                NIBBS
-                              </a>
-                </p>
-
-              </div>
-
+              <Source 
+                source={sourceText} 
+                url={url}
+                Info={Info}
+                />
             </div>            
         </div>
           
@@ -99,9 +90,7 @@ const Card = ({ cardState, switchState  }) => {
           <div className="range_minimal">
             <div className="range_width"></div>
           </div>
-          {/* YET TO BE STYLED */}
-          
-          
+                    
           <div className="intervals">
             <span className="now">Daily</span>
             <span>Monthly</span>
