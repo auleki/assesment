@@ -1,4 +1,4 @@
-This project which serves as an assessment with the [Create React App](https://github.com/facebook/create-react-app).
+This project serves as an assessment with the [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
