@@ -40,7 +40,9 @@ const Card = ({ cardState, switchState  }) => {
 
         <div className="card_content">
           <div className="stats">
-              <h3 className="title">POS FAILURE RATE</h3>
+              <h3 className="title">
+                POS FAILURE RATE
+              </h3>
 
               <div className="info">
                 <p className="percentage">60%</p>
@@ -68,7 +70,7 @@ const Card = ({ cardState, switchState  }) => {
                   min="1" 
                   max="100" 
                   onChange={sliderChange}
-                  value="50"/>                  
+                  value=""/>                  
                </div>
               
               <div className="source">
